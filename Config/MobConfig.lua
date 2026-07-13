@@ -12,8 +12,8 @@
 
 local MobConfig = {}
 
-MobConfig.Basicux = {
-	Id = "Basicux",
+MobConfig.Slime = {
+	Id = "Slime",
 	BaseStats = {
 		MaxHP = 20,
 		Damage = 5,
@@ -22,11 +22,11 @@ MobConfig.Basicux = {
 		GoldReward = 1,
 	},
 	SpawnWeight = 10, -- plus le poids est haut, plus il apparait souvent
-	MinStage = 1,
+	MinZone = 1,
 }
 
-MobConfig.Midux = {
-	Id = "Midux",
+MobConfig.Skeleton = {
+	Id = "Skeleton",
 	BaseStats = {
 		MaxHP = 35,
 		Damage = 8,
@@ -35,11 +35,11 @@ MobConfig.Midux = {
 		GoldReward = 2,
 	},
 	SpawnWeight = 6,
-	MinStage = 2,
+	MinZone = 2,
 }
 
-MobConfig.Brutux = {
-	Id = "Brutux",
+MobConfig.Brute = {
+	Id = "Brute",
 	BaseStats = {
 		MaxHP = 80,
 		Damage = 15,
@@ -48,14 +48,14 @@ MobConfig.Brutux = {
 		GoldReward = 5,
 	},
 	SpawnWeight = 2,
-	MinStage = 4,
+	MinZone = 4,
 }
 
--- Retourne la liste des mobs debloques a un stage donne (utilise par SpawnService)
-function MobConfig.GetAvailableAtStage(stageIndex: number): { any }
+-- Retourne la liste des mobs debloques a une zone donnee (utilise par SpawnService)
+function MobConfig.GetAvailableAtZone(zoneIndex: number): { any }
 	local available = {}
 	for _, mobData in pairs(MobConfig) do
-		if type(mobData) == "table" and mobData.MinStage and mobData.MinStage <= stageIndex then
+		if type(mobData) == "table" and mobData.MinZone and mobData.MinZone <= zoneIndex then
 			table.insert(available, mobData)
 		end
 	end
